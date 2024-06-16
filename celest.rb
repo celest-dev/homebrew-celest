@@ -30,8 +30,10 @@ class Celest < Formula
                    "celest-latest-macos_x64.pkg"
                  end
 
-      # Use cached_download to get the full path to the downloaded .pkg file
-      system "sudo", "installer", "-pkg", cached_download, "-target", "/"
+      # Move the .pkg file to the Cellar for accessibility
+      (prefix/"celest").install pkg_file
+      # Use `open` to start the installer
+      system "open", prefix/"celest"/pkg_file
     elsif OS.linux?
       deb_file = if Hardware::CPU.arm?
                    "celest-latest-linux_arm64.deb"
@@ -39,8 +41,8 @@ class Celest < Formula
                    "celest-latest-linux_x64.deb"
                  end
 
-      # Use cached_download to get the full path to the downloaded .deb file
-      system "sudo", "dpkg", "-i", cached_download
+      # Use `sudo dpkg` to install the .deb file
+      system "sudo", "dpkg", "-i", deb_file
     end
   end
 
