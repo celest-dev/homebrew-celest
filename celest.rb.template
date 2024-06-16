@@ -25,23 +25,23 @@ class Celest < Formula
   def install
     if OS.mac?
       if Hardware::CPU.arm?
-        system "installer", "-pkg", "celest-latest-macos_arm64.pkg", "-target", "/"
+        system "sudo", "installer", "-pkg", "celest-latest-macos_arm64.pkg", "-target", "/"
       else
-        system "installer", "-pkg", "celest-latest-macos_x64.pkg", "-target", "/"
+        system "sudo", "installer", "-pkg", "celest-latest-macos_x64.pkg", "-target", "/"
       end
     elsif OS.linux?
       if Hardware::CPU.arm?
-        system "dpkg", "-i", "celest-latest-linux_arm64.deb"
+        system "sudo", "dpkg", "-i", "celest-latest-linux_arm64.deb"
       else
-        system "dpkg", "-i", "celest-latest-linux_x64.deb"
+        system "sudo", "dpkg", "-i", "celest-latest-linux_x64.deb"
       end
     end
   end
 
   def caveats
     <<~EOS
-      For macOS, the package has been installed using the macOS installer.
-      For Linux, the package has been installed using dpkg.
+      This formula installs a package that requires root privileges.
+      You may be prompted to enter your password to allow installation.
     EOS
   end
 
