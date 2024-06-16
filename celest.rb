@@ -22,21 +22,27 @@ class Celest < Formula
 
   license "MIT"
 
-def install
-  if OS.mac?
-    if Hardware::CPU.arm?
-      system "sudo", "installer", "-pkg", "#{buildpath}/celest-latest-macos_arm64.pkg", "-target", "/"
-    else
-      system "sudo", "installer", "-pkg", "#{buildpath}/celest-latest-macos_x64.pkg", "-target", "/"
-    end
-  elsif OS.linux?
-    if Hardware::CPU.arm?
-      system "sudo", "dpkg", "-i", "#{buildpath}/celest-latest-linux_arm64.deb"
-    else
-      system "sudo", "dpkg", "-i", "#{buildpath}/celest-latest-linux_x64.deb"
+  def install
+    if OS.mac?
+      pkg_file = if Hardware::CPU.arm?
+                   "celest-latest-macos_arm64.pkg"
+                 else
+                   "celest-latest-macos_x64.pkg"
+                 end
+
+      # Use cached_download to get the full path to the downloaded .pkg file
+      system "sudo", "installer", "-pkg", cached_download, "-target", "/"
+    elsif OS.linux?
+      deb_file = if Hardware::CPU.arm?
+                   "celest-latest-linux_arm64.deb"
+                 else
+                   "celest-latest-linux_x64.deb"
+                 end
+
+      # Use cached_download to get the full path to the downloaded .deb file
+      system "sudo", "dpkg", "-i", cached_download
     end
   end
-end
 
   def caveats
     <<~EOS
