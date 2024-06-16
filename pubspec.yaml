@@ -1,0 +1,16 @@
+name: update_sha256
+description: A Dart script to update SHA-256 checksums in a Homebrew formula.
+version: 1.0.0
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  crypto: ^3.0.3
+  http: ^1.2.1
+  path_provider: ^2.1.3
+  consola: ^0.1.0
+
+
+dev_dependencies:
+  lints: ^4.0.0

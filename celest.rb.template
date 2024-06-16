@@ -1,0 +1,47 @@
+class Celest < Formula
+  desc "The flutter cloud platform"
+  homepage "https://celest.dev"
+
+  if OS.mac?
+    if Hardware::CPU.arm?
+      url "https://releases.celest.dev/macos_arm64/latest/celest-latest-macos_arm64.pkg"
+      sha256 "SHA256_CHECKSUM_OF_ARM64_MACOS_PKG"
+      filename = "celest-latest-macos_arm64.pkg"
+    else
+      url "https://releases.celest.dev/macos_x64/latest/celest-latest-macos_x64.pkg"
+      sha256 "SHA256_CHECKSUM_OF_X86_64_MACOS_PKG"
+      filename = "celest-latest-macos_x64.pkg"
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      url "https://releases.celest.dev/linux_arm64/latest/celest-latest-linux_arm64.deb"
+      sha256 "SHA256_CHECKSUM_OF_ARM64_LINUX_DEB"
+      filename = "celest-latest-linux_arm64.deb"
+    else
+      url "https://releases.celest.dev/linux_x64/latest/celest-latest-linux_x64.deb"
+      sha256 "SHA256_CHECKSUM_OF_X86_64_LINUX_DEB"
+      filename = "celest-latest-linux_x64.deb"
+    end
+  end
+
+  license "MIT"
+
+  def install
+    if OS.mac?
+      system "installer", "-pkg", filename, "-target", "/"
+    elsif OS.linux?
+      system "dpkg", "-i", filename
+    end
+  end
+
+  def caveats
+    <<~EOS
+      For macOS, the package has been installed using the macOS installer.
+      For Linux, the package has been installed using dpkg.
+    EOS
+  end
+
+  test do
+    system "#{bin}/celest", "--version"
+  end
+end
