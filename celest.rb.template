@@ -22,21 +22,21 @@ class Celest < Formula
 
   license "MIT"
 
-  def install
-    if OS.mac?
-      if Hardware::CPU.arm?
-        system "sudo", "installer", "-pkg", "celest-latest-macos_arm64.pkg", "-target", "/"
-      else
-        system "sudo", "installer", "-pkg", "celest-latest-macos_x64.pkg", "-target", "/"
-      end
-    elsif OS.linux?
-      if Hardware::CPU.arm?
-        system "sudo", "dpkg", "-i", "celest-latest-linux_arm64.deb"
-      else
-        system "sudo", "dpkg", "-i", "celest-latest-linux_x64.deb"
-      end
+def install
+  if OS.mac?
+    if Hardware::CPU.arm?
+      system "sudo", "installer", "-pkg", "#{buildpath}/celest-latest-macos_arm64.pkg", "-target", "/"
+    else
+      system "sudo", "installer", "-pkg", "#{buildpath}/celest-latest-macos_x64.pkg", "-target", "/"
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      system "sudo", "dpkg", "-i", "#{buildpath}/celest-latest-linux_arm64.deb"
+    else
+      system "sudo", "dpkg", "-i", "#{buildpath}/celest-latest-linux_x64.deb"
     end
   end
+end
 
   def caveats
     <<~EOS
