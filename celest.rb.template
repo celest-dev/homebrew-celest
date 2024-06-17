@@ -35,14 +35,14 @@ class Celest < Formula
       # Use `open` to start the installer
       system "open", prefix/"celest"/pkg_file
     elsif OS.linux?
-      deb_file = if Hardware::CPU.arm?
-                   "celest-latest-linux_arm64.deb"
-                 else
-                   "celest-latest-linux_x64.deb"
-                 end
+      # add a shell script to run dpkg -i
+      (bin/"install.sh").write <<~EOS
+        #!/bin/bash
+        sudo dpkg -i #{cached_download}
+      EOS
 
-      # Use `sudo dpkg` to install the .deb file
-      system "sudo", "dpkg", "-i", deb_file
+      system "chmod", "+x", bin/"install.sh"
+      system "sudo", bin/"install.sh"
     end
   end
 

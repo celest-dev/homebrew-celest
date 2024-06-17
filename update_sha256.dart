@@ -27,6 +27,7 @@ Future<void> main() async {
     final filePath = await downloadFile(arch.value, fileName);
     final sha256 = await calculateSha256(filePath);
     sha256s[arch.key] = sha256;
+    Console.writeLine("SHA-256 checksum for $fileName: $sha256");
   }
 
   await updateFormula(sha256s);
