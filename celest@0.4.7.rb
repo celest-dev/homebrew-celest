@@ -1,4 +1,4 @@
-class Celest < Formula
+class CelestAT047 < Formula
   desc "The flutter cloud platform"
   homepage "https://celest.dev"
   version "0.4.7"

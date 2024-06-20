@@ -1,21 +1,22 @@
-class Celest < Formula
+class CelestSANITIZED_VERSION < Formula
   desc "The flutter cloud platform"
   homepage "https://celest.dev"
+  version "CELEST_VERSION"
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://releases.celest.dev/macos_arm64/latest/celest-latest-macos_arm64.pkg"
+      url "ARM64_MACOS_PKG_URL"
       sha256 "SHA256_CHECKSUM_OF_ARM64_MACOS_PKG"
     else
-      url "https://releases.celest.dev/macos_x64/latest/celest-latest-macos_x64.pkg"
+      url "X86_64_MACOS_PKG_URL"
       sha256 "SHA256_CHECKSUM_OF_X86_64_MACOS_PKG"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
-      url "https://releases.celest.dev/linux_arm64/latest/celest-latest-linux_arm64.deb"
+      url "ARM64_LINUX_PKG_URL"
       sha256 "SHA256_CHECKSUM_OF_ARM64_LINUX_DEB"
     else
-      url "https://releases.celest.dev/linux_x64/latest/celest-latest-linux_x64.deb"
+      url "X86_64_LINUX_PKG_URL"
       sha256 "SHA256_CHECKSUM_OF_X86_64_LINUX_DEB"
     end
   end
@@ -25,9 +26,9 @@ class Celest < Formula
   def install
     if OS.mac?
       pkg_file = if Hardware::CPU.arm?
-                   "celest-latest-macos_arm64.pkg"
+                   "celest-CELEST_VERSION-macos_arm64.pkg"
                  else
-                   "celest-latest-macos_x64.pkg"
+                   "celest-CELEST_VERSION-macos_x64.pkg"
                  end
 
       # Move the .pkg file to the Cellar for accessibility

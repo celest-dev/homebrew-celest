@@ -1,23 +1,23 @@
-class Celest < Formula
+class CelestAT018 < Formula
   desc "The flutter cloud platform"
   homepage "https://celest.dev"
-  version "0.4.7"
+  version "0.1.8"
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://releases.celest.dev/macos_arm64/0.4.7/celest-0.4.7-macos_arm64.pkg"
-      sha256 "f3a61f0379c3bfa1b2da3c3945dcaaad1237a254e97f5219690a2f906d4136f0"
+      url "https://releases.celest.dev/macos_arm64/0.1.8/celest-0.1.8-macos_arm64.pkg"
+      sha256 "00bbd89b868e13a083c3cd257f3cfcecdd5c54c629818d428d878cb7e6513a19"
     else
-      url "https://releases.celest.dev/macos_x64/0.4.7/celest-0.4.7-macos_x64.pkg"
-      sha256 "a16a2b7b9f06f5bdd1dfd4dc9bdd5f234c706bb20847cb082900f2763283458b"
+      url "https://releases.celest.dev/macos_x64/0.1.8/celest-0.1.8-macos_x64.pkg"
+      sha256 "861ec443871cc04a2a901bf48185983d3c3af54842b8d2133b163de8d1c63325"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
-      url "https://releases.celest.dev/linux_arm64/0.4.7/celest-0.4.7-linux_arm64.deb"
-      sha256 "ebfd7e15ab30165d2a7e21ee2ea5075af6f5801a206d9b06fcab0d4ac11f04b5"
+      url "https://releases.celest.dev/linux_arm64/0.1.8/celest-0.1.8-linux_arm64.deb"
+      sha256 "80195f7d9cd72234168c148db5a19d1c4174956150746291c4175ee4fb4c4b8f"
     else
-      url "https://releases.celest.dev/linux_x64/0.4.7/celest-0.4.7-linux_x64.deb"
-      sha256 "75b6d8256c526b85b747a0356287cee7ed93bccdf9d915876e432837dee0ce66"
+      url "https://releases.celest.dev/linux_x64/0.1.8/celest-0.1.8-linux_x64.deb"
+      sha256 "fcee28ec84accac1ac0849557f4fb63bc9850d7d82e13499f8d37ac3ae4122b3"
     end
   end
 
@@ -26,9 +26,9 @@ class Celest < Formula
   def install
     if OS.mac?
       pkg_file = if Hardware::CPU.arm?
-                   "celest-0.4.7-macos_arm64.pkg"
+                   "celest-0.1.8-macos_arm64.pkg"
                  else
-                   "celest-0.4.7-macos_x64.pkg"
+                   "celest-0.1.8-macos_x64.pkg"
                  end
 
       # Move the .pkg file to the Cellar for accessibility

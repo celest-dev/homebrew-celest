@@ -1,23 +1,23 @@
-class Celest < Formula
+class CelestAT040dev2 < Formula
   desc "The flutter cloud platform"
   homepage "https://celest.dev"
-  version "0.4.7"
+  version "0.4.0-dev.2"
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://releases.celest.dev/macos_arm64/0.4.7/celest-0.4.7-macos_arm64.pkg"
-      sha256 "f3a61f0379c3bfa1b2da3c3945dcaaad1237a254e97f5219690a2f906d4136f0"
+      url "https://releases.celest.dev/macos_arm64/0.4.0-dev.2/celest-0.4.0-dev.2-macos_arm64.pkg"
+      sha256 "ffdb812f8e46aa0ea92cebdccc53809856251d0b6a087600b7466b6560a9fba3"
     else
-      url "https://releases.celest.dev/macos_x64/0.4.7/celest-0.4.7-macos_x64.pkg"
-      sha256 "a16a2b7b9f06f5bdd1dfd4dc9bdd5f234c706bb20847cb082900f2763283458b"
+      url "https://releases.celest.dev/macos_x64/0.4.0-dev.2/celest-0.4.0-dev.2-macos_x64.pkg"
+      sha256 "8a17e181ad363a7091a0fada45477206db3dbf9c6c0325d979063acac918b24d"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
-      url "https://releases.celest.dev/linux_arm64/0.4.7/celest-0.4.7-linux_arm64.deb"
-      sha256 "ebfd7e15ab30165d2a7e21ee2ea5075af6f5801a206d9b06fcab0d4ac11f04b5"
+      url "https://releases.celest.dev/linux_arm64/0.4.0-dev.2/celest-0.4.0-dev.2-linux_arm64.deb"
+      sha256 "f5b852874f527cad9f6525cee37d2460df8ce1cd0a4471e4c8bd924689880f2e"
     else
-      url "https://releases.celest.dev/linux_x64/0.4.7/celest-0.4.7-linux_x64.deb"
-      sha256 "75b6d8256c526b85b747a0356287cee7ed93bccdf9d915876e432837dee0ce66"
+      url "https://releases.celest.dev/linux_x64/0.4.0-dev.2/celest-0.4.0-dev.2-linux_x64.deb"
+      sha256 "e692ae866f884a3c8c34e628691d8c57c143a59951bd8edc88c537b31eaefa36"
     end
   end
 
@@ -26,9 +26,9 @@ class Celest < Formula
   def install
     if OS.mac?
       pkg_file = if Hardware::CPU.arm?
-                   "celest-0.4.7-macos_arm64.pkg"
+                   "celest-0.4.0-dev.2-macos_arm64.pkg"
                  else
-                   "celest-0.4.7-macos_x64.pkg"
+                   "celest-0.4.0-dev.2-macos_x64.pkg"
                  end
 
       # Move the .pkg file to the Cellar for accessibility

@@ -1,23 +1,23 @@
-class Celest < Formula
+class CelestAT0311 < Formula
   desc "The flutter cloud platform"
   homepage "https://celest.dev"
-  version "0.4.7"
+  version "0.3.11"
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://releases.celest.dev/macos_arm64/0.4.7/celest-0.4.7-macos_arm64.pkg"
-      sha256 "f3a61f0379c3bfa1b2da3c3945dcaaad1237a254e97f5219690a2f906d4136f0"
+      url "https://releases.celest.dev/macos_arm64/0.3.11/celest-0.3.11-macos_arm64.pkg"
+      sha256 "2194461c623d4338ecf8f560d4de9b63b8086b159220943aa9f8e171f404b973"
     else
-      url "https://releases.celest.dev/macos_x64/0.4.7/celest-0.4.7-macos_x64.pkg"
-      sha256 "a16a2b7b9f06f5bdd1dfd4dc9bdd5f234c706bb20847cb082900f2763283458b"
+      url "https://releases.celest.dev/macos_x64/0.3.11/celest-0.3.11-macos_x64.pkg"
+      sha256 "d8f1c6cd2d317084094de5ae2eef3d3c7ab1ce2324a6cf86b045147b43d7a4ba"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
-      url "https://releases.celest.dev/linux_arm64/0.4.7/celest-0.4.7-linux_arm64.deb"
-      sha256 "ebfd7e15ab30165d2a7e21ee2ea5075af6f5801a206d9b06fcab0d4ac11f04b5"
+      url "https://releases.celest.dev/linux_arm64/0.3.11/celest-0.3.11-linux_arm64.deb"
+      sha256 "839dae472ab2004870d46de0f6179a6af12860e531e8f663d4ad0065473ea557"
     else
-      url "https://releases.celest.dev/linux_x64/0.4.7/celest-0.4.7-linux_x64.deb"
-      sha256 "75b6d8256c526b85b747a0356287cee7ed93bccdf9d915876e432837dee0ce66"
+      url "https://releases.celest.dev/linux_x64/0.3.11/celest-0.3.11-linux_x64.deb"
+      sha256 "d8cab10840b1fc7d046161da6aa227ba9098a298b1eec357ead85341b3ea7ef5"
     end
   end
 
@@ -26,9 +26,9 @@ class Celest < Formula
   def install
     if OS.mac?
       pkg_file = if Hardware::CPU.arm?
-                   "celest-0.4.7-macos_arm64.pkg"
+                   "celest-0.3.11-macos_arm64.pkg"
                  else
-                   "celest-0.4.7-macos_x64.pkg"
+                   "celest-0.3.11-macos_x64.pkg"
                  end
 
       # Move the .pkg file to the Cellar for accessibility
