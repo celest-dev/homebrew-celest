@@ -5,18 +5,18 @@ class Celest < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://releases.celest.dev/macos_arm64/latest/celest-latest-macos_arm64.pkg"
-      sha256 "e70b351443e782d8ecc49e7a36eb6efee3ee5a4557e6040f956ae2625e222427"
+      sha256 "f3a61f0379c3bfa1b2da3c3945dcaaad1237a254e97f5219690a2f906d4136f0"
     else
       url "https://releases.celest.dev/macos_x64/latest/celest-latest-macos_x64.pkg"
-      sha256 "725af8d398f18d50f913805907fa2d4b7a8c81f8697f28da7a8f7c2d115f2594"
+      sha256 "a16a2b7b9f06f5bdd1dfd4dc9bdd5f234c706bb20847cb082900f2763283458b"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
       url "https://releases.celest.dev/linux_arm64/latest/celest-latest-linux_arm64.deb"
-      sha256 "eb459565228cf82552a06a58ba69371261db233ae48c576ae7d430c7da12c7d6"
+      sha256 "ebfd7e15ab30165d2a7e21ee2ea5075af6f5801a206d9b06fcab0d4ac11f04b5"
     else
       url "https://releases.celest.dev/linux_x64/latest/celest-latest-linux_x64.deb"
-      sha256 "e9b5b80d493ab61424ffcb6427092ecc7d2e09ed95548900bf53ccd4471ba899"
+      sha256 "75b6d8256c526b85b747a0356287cee7ed93bccdf9d915876e432837dee0ce66"
     end
   end
 
