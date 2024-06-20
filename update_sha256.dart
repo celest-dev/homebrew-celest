@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:consola/consola.dart';
 import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 
 Future<void> main() async {
-  Console.clearScreen();
-
   final architectures = {
     'macos_arm64':
         'https://releases.celest.dev/macos_arm64/latest/celest-latest-macos_arm64.pkg',
@@ -27,11 +24,11 @@ Future<void> main() async {
     final filePath = await downloadFile(arch.value, fileName);
     final sha256 = await calculateSha256(filePath);
     sha256s[arch.key] = sha256;
-    Console.writeLine("SHA-256 checksum for $fileName: $sha256");
+    print("\nSHA-256 checksum for $fileName: $sha256");
   }
 
   await updateFormula(sha256s);
-  Console.writeLine('Homebrew formula updated with new SHA-256 checksums.');
+  print('\nHomebrew formula updated with new SHA-256 checksums.');
 }
 
 Future<String> downloadFile(String url, String fileName) async {
@@ -40,10 +37,10 @@ Future<String> downloadFile(String url, String fileName) async {
   final file = File(path.join(tempPath, fileName));
 
   // check if the file already exists, if so skip the download
-  if (file.existsSync()) {
-    Console.writeLine('File $fileName already exists, skipping download.');
-    return file.path;
-  }
+  // if (file.existsSync()) {
+  //   print('\nFile ${fileName} already exists, skipping download.');
+  //   return file.path;
+  // }
 
   final client = http.Client();
   final request = await client.send(http.Request('GET', Uri.parse(url)));
@@ -53,23 +50,14 @@ Future<String> downloadFile(String url, String fileName) async {
 
   final sink = file.openWrite();
   final contentLength = int.parse(request.headers['content-length']!);
-  final progressBar = ProgressBar.atCursor(
-    total: contentLength,
-    width: 100,
-    head: 'Downloading $fileName: ',
-    barFillCharacter: '#',
-    tailBuilder: (_, __, percent) => ' ${percent.toStringAsFixed(0)}%',
-    console: Console.instance,
-  );
 
   final completer = Completer<void>();
 
   request.stream.listen((chunk) {
     totalBytes += chunk.length;
     sink.add(chunk);
-
-    progressBar.current = totalBytes;
-    Console.draw(progressBar);
+    print(
+        '\rDownloading $fileName... ${(totalBytes / contentLength * 100).toStringAsFixed(2)}%');
   }, onDone: () async {
     stopwatch.stop();
     await sink.close();
